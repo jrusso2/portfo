@@ -1,21 +1,27 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, request, jsonify, abort
 import csv
-
-from jinja2.lexer import newline_re
+import requests
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def my_home():
     return render_template('index.html')
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 @app.route('/<string:page_name>')
 def html_page(page_name):
-    return render_template(f"{page_name}.html")
+    try:
+        return render_template(f"{page_name}.html")
+    except:
+        abort(404)
 
-# @app.route('/test')
-# def test_route():
-#     return render_template('password-checker.html')
 
 def write_to_file(data):
     with open('database.txt', mode='a') as database:
@@ -24,6 +30,7 @@ def write_to_file(data):
         message = data['message']
         file = database.write(f"Email: {email}\nSubject: {subject}\nMessage: {message}\n{'-' * 40}\n")
 
+
 def write_to_csv(data):
     with open('database.csv', mode='a', newline='') as database2:
         email = data['email']
@@ -31,6 +38,7 @@ def write_to_csv(data):
         message = data['message']
         csv_writer = csv.writer(database2, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow([email, subject, message])
+
 
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
@@ -42,5 +50,36 @@ def submit_form():
             return 'form submitted'
         except:
             print('data not written to db')
+            return 'something went wrong', 500
     else:
-        return 'something went wrong'
+        return 'Invalid request method', 400
+
+
+@app.route('/verify_recaptcha', methods=['POST'])
+def verify_recaptcha():
+    try:
+        data = request.json  # Expecting JSON payload
+        token = data.get('token')
+        secret_key = '6LdfeawqAAAAAMUaRKLNmFQW_g1penroRVMdSyiD'
+
+        # Send the token to Google's verification API
+        verify_url = 'https://www.google.com/recaptcha/api/siteverify'
+        payload = {'secret': secret_key, 'response': token}
+        response = requests.post(verify_url, data=payload)
+        result = response.json()
+
+        # Add additional logging for debugging
+        print(f"reCAPTCHA verification result: {result}")
+
+        return jsonify({
+            'success': result.get('success', False),
+            'score': result.get('score', 0),
+            'action': result.get('action', ''),
+        }), 200
+    except Exception as e:
+        print(f"Error during reCAPTCHA verification: {e}")
+        return jsonify({'success': False, 'error': 'Internal server error'}), 500
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

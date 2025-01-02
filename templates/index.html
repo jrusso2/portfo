@@ -1,15 +1,11 @@
 <!DOCTYPE HTML>
-<!--
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
     <title>My Portfolio</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="../static/assets/css/main.css"/>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdfeawqAAAAABR2NIePVZuzLRSa4eHXYFXAIxT7"></script>
 </head>
 <body class="is-preload">
 
@@ -17,7 +13,7 @@
 <header id="header">
     <div class="inner">
         <a href="#" class="image avatar"><img src="../static/images/avatar.jpg" alt=""/></a>
-        <h1><strong>I am [Your Name]</strong>, a passionate developer<br/>
+        <h1><strong>I am Jason Russo</strong>, a passionate developer<br/>
             creating solutions and designs<br/>
             that make a difference.</h1>
     </div>
@@ -29,9 +25,9 @@
     <!-- About Me -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello! I'm [Your Name], a developer with a passion for creating impactful software solutions. I specialize in
-            [your skills or expertise], and I enjoy tackling challenges that allow me to grow both personally and
-            professionally. When I'm not coding, I enjoy [your hobbies or interests]. Let's connect and create something
+        <p>Hello! I'm Jason Russo, a developer with a passion for creating impactful software solutions. I specialize in
+            cybersecurity and web development, and I enjoy tackling challenges that allow me to grow both personally and
+            professionally. When I'm not coding, I enjoy hiking and playing chess. Let's connect and create something
             amazing together!</p>
     </section>
 
@@ -42,80 +38,30 @@
             <article class="col-6 col-12-xsmall work-item">
                 <a href="/password-checker" class="image fit thumb"><img src="../static/images/thumbs/project1.jpg"
                                                                          alt="Project 1"/></a>
-                <h3>Project 1</h3>
-                <p>A brief description of the first project.</p>
+                <h3>Password Checker</h3>
+                <p>A tool to check if your password is involved in a data breach.</p>
             </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="project2.html" class="image fit thumb"><img src="../static/images/thumbs/project2.jpg"
-                                                                     alt="Project 2"/></a>
-                <h3>Project 2</h3>
-                <p>A brief description of the second project.</p>
-            </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="project3.html" class="image fit thumb"><img src="../static/images/thumbs/project3.jpg"
-                                                                     alt="Project 3"/></a>
-                <h3>Project 3</h3>
-                <p>A brief description of the third project.</p>
-            </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="project4.html" class="image fit thumb"><img src="../static/images/thumbs/project4.jpg"
-                                                                     alt="Project 4"/></a>
-                <h3>Project 4</h3>
-                <p>A brief description of the fourth project.</p>
-            </article>
+            <!-- Add other projects here -->
         </div>
     </section>
 
     <!-- Contact -->
     <section id="contact">
         <h2>Get In Touch</h2>
-        <div class="row">
+        <div id="contact-info" class="row" style="display: none;">
             <div class="col-8 col-12-small">
-                <!-- Form Container -->
-                <div id="form-container">
-                    <form action="/submit_form" method="post" class="reveal-content" id="contact-form">
-                        <div class="row gtr-uniform gtr-50">
-                            <div class="col-6 col-12-xsmall">
-                                <input type="email" name="email" id="email" placeholder="Email" class="form-control"
-                                       required/>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" name="subject" id="subject" placeholder="Subject"
-                                       class="form-control" required/>
-                            </div>
-                            <div class="col-12">
-                                <textarea name="message" id="message" placeholder="Enter your message" rows="5"
-                                          class="form-control" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-default btn-lg">Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Thank You Message -->
-                <div id="thank-you-message" style="display: none; text-align: center;">
-                    <h3>Thank you for your message!</h3>
-                    <p>I’ll get back to you as soon as possible.</p>
-                </div>
-            </div>
-
-            <div class="col-4 col-12-small">
                 <ul class="labeled-icons">
                     <li>
                         <h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-                        42 rue Moulbert<br/>
-                        75016 Paris<br/>
-                        France
+                        Clemson, SC, USA<br/>
                     </li>
                     <li>
                         <h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-                        +33 9 07 45 12 65
+                        (843)-940-0865
                     </li>
                     <li>
                         <h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-                        <a href="mailto:e-mail@mail.io">e-mail@mail.io</a>
+                        <a href="mailto:jason.russo.sc@gmail.com">jason.russo.sc@gmail.com</a>
                     </li>
                 </ul>
             </div>
@@ -123,35 +69,24 @@
     </section>
 
     <script>
-        document.getElementById('contact-form').addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent the default form submission
+        grecaptcha.ready(async function () {
+            const token = await grecaptcha.execute('6LdfeawqAAAAABR2NIePVZuzLRSa4eHXYFXAIxT7', { action: 'contact_info' });
 
-            // Collect form data
-            const formData = new FormData(event.target);
+            // Verify the reCAPTCHA token with the server
+            const response = await fetch('/verify_recaptcha', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: token })
+            });
 
-            try {
-                // Send form data to the server
-                const response = await fetch('/submit_form', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    // Hide the form container
-                    document.getElementById('form-container').style.display = 'none';
-
-                    // Show the thank-you message
-                    document.getElementById('thank-you-message').style.display = 'block';
-                } else {
-                    alert('There was an issue submitting the form. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again later.');
+            const result = await response.json();
+            if (result.success && result.score > 0.5) {
+                document.getElementById('contact-info').style.display = 'block';
+            } else {
+                console.error('Failed reCAPTCHA verification');
             }
         });
     </script>
-
 
 </div>
 
@@ -159,15 +94,15 @@
 <footer id="footer">
     <div class="inner">
         <ul class="icons">
-            <li><a href="https://twitter.com/yourusername" class="icon brands fa-twitter"><span
-                    class="label">Twitter</span></a></li>
-            <li><a href="https://github.com/yourusername" class="icon brands fa-github"><span
+            <li><a href="https://www.linkedin.com/in/russojason1/" class="icon brands fa-linkedin"><span
+                    class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/jrusso2" class="icon brands fa-github"><span
                     class="label">GitHub</span></a></li>
-            <li><a href="mailto:youremail@example.com" class="icon solid fa-envelope"><span
+            <li><a href="mailto:jason.russo.sc@gmail.com" class="icon solid fa-envelope"><span
                     class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
-            <li>&copy; [Your Name]</li>
+            <li>&copy; Jason Russo</li>
             <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
         </ul>
     </div>
