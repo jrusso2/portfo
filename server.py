@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, jsonify, abort
 import csv
 import requests
+import os
 
 app = Flask(__name__)
 
+secret_key = os.getenv('RECAPTCHA_SECRET_KEY')
 
 @app.route('/')
 def my_home():
@@ -60,7 +62,7 @@ def verify_recaptcha():
     try:
         data = request.json  # Expecting JSON payload
         token = data.get('token')
-        secret_key = '6LdfeawqAAAAAMUaRKLNmFQW_g1penroRVMdSyiD'
+        secret_key
 
         # Send the token to Google's verification API
         verify_url = 'https://www.google.com/recaptcha/api/siteverify'

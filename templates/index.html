@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="../static/assets/css/main.css"/>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LdfeawqAAAAABR2NIePVZuzLRSa4eHXYFXAIxT7"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfQg6wqAAAAAK6jfpAYQE26FM1HYpwaVnNoPaof"></script>
 </head>
 <body class="is-preload">
 
@@ -70,7 +70,7 @@
 
     <script>
         grecaptcha.ready(async function () {
-            const token = await grecaptcha.execute('6LdfeawqAAAAABR2NIePVZuzLRSa4eHXYFXAIxT7', { action: 'contact_info' });
+            const token = await grecaptcha.execute('6LfQg6wqAAAAAK6jfpAYQE26FM1HYpwaVnNoPaof', { action: 'contact_info' });
 
             // Verify the reCAPTCHA token with the server
             const response = await fetch('/verify_recaptcha', {
