@@ -62,7 +62,7 @@ def verify_recaptcha():
     try:
         data = request.json  # Expecting JSON payload
         token = data.get('token')
-        secret_key
+
 
         # Send the token to Google's verification API
         verify_url = 'https://www.google.com/recaptcha/api/siteverify'
