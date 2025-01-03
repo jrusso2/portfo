@@ -6,16 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="../static/assets/css/main.css"/>
     <script src="https://www.google.com/recaptcha/api.js?render=6LfQg6wqAAAAAK6jfpAYQE26FM1HYpwaVnNoPaof"></script>
+    <style>
+        .work-item .image img {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
 </head>
 <body class="is-preload">
 
 <!-- Header -->
 <header id="header">
     <div class="inner">
-        <a href="#" class="image avatar"><img src="../static/images/avatar.jpg" alt=""/></a>
-        <h1><strong>I am Jason Russo</strong>, a passionate developer<br/>
-            creating solutions and designs<br/>
-            that make a difference.</h1>
+<!--        <a href="#" class="image avatar"><img src="../static/images/avatar.jpg" alt=""/></a>-->
+        <h1 style="font-size: 3em;"><strong>Jason Russo</strong></h1>
     </div>
 </header>
 
@@ -25,23 +33,58 @@
     <!-- About Me -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello! I'm Jason Russo, a developer with a passion for creating impactful software solutions. I specialize in
-            cybersecurity and web development, and I enjoy tackling challenges that allow me to grow both personally and
-            professionally. When I'm not coding, I enjoy hiking and playing chess. Let's connect and create something
-            amazing together!</p>
+        <p>Hello! I'm Jason Russo, a senior at Clemson University, graduating in May 2025 with a degree in Computer
+            Science and Cybersecurity.
+            While I've always enjoyed the challenge of computer science, I recently discovered a greater passion for
+            cybersecurity.
+            Over the past year, I've done all I can to immerse myself in the field, dedicating time to learning,
+            exploring, and growing my expertise.
+            With a commitment to continuous learning, I take on hands-on projects to sharpen my skills and stay ahead in
+            an ever-evolving industry.</p>
+
+        <p>My journey into cybersecurity is backed by hands-on projects, coursework, and independent learning. I've
+            gained experience with
+            tools through labs with TryHackMe, and I'm currently working on completing courses and projects through Zero
+            to Mastery.
+            Beyond technical skills, my background in high-end hospitality has honed my ability to deliver exceptional
+            service and
+            thrive in customer-facing roles—qualities that translate seamlessly into working with clients and
+            teams. </p>
     </section>
 
-    <!-- Portfolio -->
-    <section id="portfolio">
-        <h2>Portfolio</h2>
+
+    <!-- Certifications -->
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>CompTIA Security+</li>
+            <li>TryHackMe Complete Beginner, Security Engineer, Web Fundamentals</li>
+        </ul>
+    </section>
+
+    <!-- Projects -->
+    <section id="Projects">
+        <h2>Projects</h2>
         <div class="row">
             <article class="col-6 col-12-xsmall work-item">
-                <a href="/password-checker" class="image fit thumb"><img src="../static/images/thumbs/project1.jpg"
+                <a href="/password-checker" class="image fit thumb"><img src="../static/images/thumbs/pwd-check.png"
                                                                          alt="Project 1"/></a>
                 <h3>Password Checker</h3>
                 <p>A tool to check if your password is involved in a data breach.</p>
             </article>
-            <!-- Add other projects here -->
+            <article class="col-6 col-12-xsmall work-item">
+                <a href="/tryhackme" class="image fit thumb"><img src="../static/images/thumbs/thm.png"
+                                                                  alt="Project 2"/></a>
+                <h3>TryHackMe</h3>
+                <p>Explored hands-on cybersecurity challenges to sharpen my skills in penetration testing and defense
+                    strategies.</p>
+            </article>
+            <article class="col-6 col-12-xsmall work-item">
+                <a href="/home-network-audit" class="image fit thumb"><img src="../static/images/thumbs/openvas-login.png"
+                                                                           alt="Project 3"/></a>
+                <h3>Home Network Security Audit</h3>
+                <p>Completed an audit of my home network to evaluate and remediate vulnerabilities.</p>
+            </article>
         </div>
     </section>
 
